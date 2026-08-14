@@ -1,0 +1,192 @@
+Exit code: 0
+Wall time: 2.5 seconds
+Output:
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#073f2a" />
+  <title>滋味亭：灶火遠征</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="texture"></div>
+  <div class="game-shell">
+    <header class="topbar">
+      <div class="brand">
+        <img src="assets/logo.png" alt="滋味亭" />
+        <div><small>一碗暖心・滋味日常</small><h1>灶火遠征</h1></div>
+      </div>
+      <div class="resources" aria-label="玩家資源">
+        <div><span>🥣</span><b id="coins">0</b><small>滋味幣</small></div>
+        <div><span>🌶️</span><b id="spice">0</b><small>香料</small></div>
+        <button class="sound-btn" id="soundBtn" aria-label="切換音效">♪</button>
+      </div>
+    </header>
+
+    <main class="dashboard">
+      <aside class="card hero-card">
+        <div class="eyebrow">今日值班</div>
+        <div class="hero-frame">
+          <div class="level-badge">LV.<span id="level">1</span></div>
+          <img id="heroImage" src="assets/bear.gif" alt="熊仔店長" />
+          <div class="hero-glow"></div>
+        </div>
+        <h2 id="heroName">熊仔店長</h2>
+        <p class="role" id="heroRole">暖心料理守護者</p>
+        <div class="xp-row"><span>熟練度</span><span id="xpText">0 / 60</span></div>
+        <div class="bar xp"><i id="xpBar"></i></div>
+        <div class="power-row"><span>🔥 灶火力</span><strong id="power">12</strong></div>
+        <button class="secondary full" id="switchHero">切換貓仔夥伴</button>
+      </aside>
+
+      <section class="battle-column">
+        <div class="route-strip">
+          <button class="route-arrow" id="prevStage" aria-label="上一關">‹</button>
+          <div><small>料理遠征</small><strong id="stageName">第一站・青菜小徑</strong></div>
+          <span class="stage-count" id="stageCount">1-1</span>
+          <button class="route-arrow" id="nextStage" aria-label="下一關">›</button>
+        </div>
+
+        <div class="battlefield" id="battlefield">
+          <div class="world-layer far-world"></div><div class="world-layer near-world"></div>
+          <div class="sun"></div><div class="cloud c1"></div><div class="cloud c2"></div>
+          <div class="mountain m1"></div><div class="mountain m2"></div>
+          <div class="stall"><span>滋味亭</span><div class="awning"></div></div>
+          <div class="road-motion"></div>
+          <div class="scenery-track s1"><span>🌳</span><span>🪨</span><span>🌿</span><span>🏮</span><span>🌳</span><span>🥕</span></div>
+          <div class="scenery-track s2"><span>🌳</span><span>🪨</span><span>🌿</span><span>🏮</span><span>🌳</span><span>🥕</span></div>
+          <div class="combatants">
+            <div class="fighter hero-fighter" id="heroFighter">
+              <div class="speech" id="heroSpeech">今天也要煮出好滋味！</div>
+              <div class="attack-state" id="attackState">● 待機</div>
+              <img src="assets/bear.gif" id="battleHero" alt="熊仔店長" />
+              <div class="shadow"></div>
+            </div>
+            <div class="projectile" id="projectile">🥢</div>
+            <div class="fighter enemy" id="enemy">
+              <div class="enemy-icon" id="enemyIcon">🥬</div>
+              <div class="shadow"></div>
+              <span class="enemy-name" id="enemyName">迷路青菜</span>
+            </div>
+          </div>
+          <div class="monster-lane" id="monsterLane"></div>
+          <div class="drop-layer" id="dropLayer"></div>
+          <div class="battle-text-layer" id="battleTextLayer"></div>
+          <div class="damage-number" id="damageNumber"></div>
+          <div class="battle-hud">
+            <div class="enemy-hp-head"><span id="enemyTitle">迷路青菜</span><span id="hpText">80 / 80</span></div>
+            <div class="bar hp"><i id="hpBar"></i></div>
+            <div class="wave-row"><span>本區進度</span><div id="pips" class="pips"></div><b id="waveText">0 / 8</b></div>
+          </div>
+        </div>
+
+        <div class="skills">
+          <button class="skill" data-skill="chop"><span>🥢</span><b>疾速備料</b><small>立即 5 倍傷害</small><i></i></button>
+          <button class="skill" data-skill="soup"><span>🍲</span><b>暖心湯氣</b><small>8 秒雙倍火力</small><i></i></button>
+          <button class="skill ultimate" data-skill="feast"><span>🔥</span><b>滋味盛宴</b><small>清空一般客單</small><i></i></button>
+        </div>
+        <section class="expedition-console">
+          <div class="party-status">
+            <div class="status-title"><span>隊伍狀態</span><b id="partyStatusText">自動戰鬥待機</b></div>
+            <div class="status-meter"><span>HP</span><div class="bar status-hp"><i id="partyHpBar"></i></div><b id="partyHpText">100 / 100</b></div>
+            <div class="status-meter"><span>飢餓</span><div class="bar status-hunger"><i id="partyHungerBar"></i></div><b id="partyHungerText">100 / 100</b></div>
+          </div>
+          <div class="combat-feed"><div class="console-title">遠征訊息</div><div id="expeditionLog"></div></div>
+          <div class="party-chat"><div class="console-title"><span>玩家聊天</span><i id="chatOnline">● 房間連線</i></div><div class="chat-messages" id="chatMessages"></div><form id="chatForm"><input id="chatInput" maxlength="80" placeholder="輸入訊息，Enter 送出" autocomplete="off" /><button>發送</button></form></div>
+        </section>
+      </section>
+
+      <aside class="right-column">
+        <section class="card gm-card">
+          <div class="gm-head">
+            <div><small>GM 即時營運台</small><h3><i class="online-dot"></i> 接單服務中</h3></div>
+            <button id="newOrderBtn">開啟 POS</button>
+          </div>
+          <div class="gm-stats"><div><b id="waitingCount">0</b><span>待接單</span></div><div><b id="cookingCount">0</b><span>製作中</span></div><div><b id="gmRevenue">$0</b><span>今日營業額</span></div></div>
+          <div class="order-inbox" id="orderInbox"></div>
+        </section>
+        <section class="card order-card game-order-card">
+          <div class="card-title"><div><small>目前訂單</small><h3 id="orderName">鮮蔬暖心碗</h3></div><span id="orderReward">+12 🥣</span></div>
+          <div class="dish-photo"><img id="dishImage" src="assets/dish-veg.png" alt="餐點" /><div class="steam">♨</div></div>
+          <p id="orderDesc">嚴選時蔬，簡單煮出踏實好味。</p>
+        </section>
+        <section class="card quest-card compact-quest">
+          <div class="card-title"><div><small>今日委託</small><h3>街坊的期待</h3></div><span id="questBadge">0/10</span></div>
+          <p>完成 10 份料理訂單</p>
+          <div class="bar quest"><i id="questBar"></i></div>
+          <button id="claimQuest" disabled>領取 120 🥣</button>
+        </section>
+        <ul id="battleLog" class="sr-only"></ul>
+      </aside>
+    </main>
+
+    <section class="upgrade-drawer lounge-drawer" id="upgradeDrawer">
+      <div class="drawer-head">
+        <div><small>冒險整備區</small><h2>休息室</h2></div>
+        <div class="hunger-box">飢餓度 <b id="hungerText">100 / 100</b><div class="bar"><i id="hungerBar"></i></div></div>
+      </div>
+      <div class="lounge-grid">
+        <article class="lounge-card"><h3>⚔️ 裝備欄</h3><div class="equipment-slots"><button id="weaponSlot"><span>武器</span><b>未裝備</b></button><button id="armorSlot"><span>防具</span><b>未裝備</b></button></div><div class="combat-bonus" id="combatBonus">裝備加成 +0</div></article>
+        <article class="lounge-card inventory-card"><h3>🎒 道具欄</h3><div class="inventory-grid" id="inventoryGrid"></div></article>
+        <article class="lounge-card"><h3>✨ 衝武防</h3><p>使用強化卷軸提升已裝備的武器或防具。</p><div class="enhance-actions"><button id="enhanceWeapon">武器強化</button><button id="enhanceArmor">防具強化</button></div></article>
+        <article class="lounge-card"><h3>🍱 補充飢餓度</h3><p>戰鬥會消耗飢餓度；低於 20 時攻擊力下降。</p><button class="lounge-action" id="eatMeal">使用暖心便當</button></article>
+        <article class="lounge-card companion-card"><h3>🤝 招募夥伴</h3><div><img src="assets/cat.gif" alt="貓仔" /><p><b>貓仔軍師</b><br>加入後全隊攻擊力 +15%</p></div><button class="lounge-action" id="recruitCat">招募・300 🥣</button></article>
+      </div>
+    </section>
+
+    <nav class="bottom-nav">
+      <button data-panel="battle" class="active"><span>⚔️</span>遠征</button>
+      <button data-panel="lounge"><span>🛋️</span>休息室<i id="upgradeDot"></i></button>
+      <button data-panel="codex"><span>🧾</span>POS 點餐</button>
+      <button data-panel="customers"><span>👥</span>客人</button>
+      <button id="resetBtn"><span>↻</span>重來</button>
+    </nav>
+  </div>
+
+  <section class="pos-screen" id="posScreen" aria-hidden="true">
+    <header class="pos-header">
+      <div class="pos-brand"><img src="assets/logo.png" alt="滋味亭" /><div><small>滋味亭 GM 系統</small><h2>門市 POS</h2></div></div>
+      <div class="pos-tabs"><button data-pos-tab="sale" class="active">＋ 新增點餐</button><button data-pos-tab="manage">☷ 訂單管理 <i id="posOrderBadge">0</i></button></div>
+      <button class="pos-close" id="posClose">×</button>
+    </header>
+    <div class="pos-view active" id="saleView">
+      <main class="pos-layout">
+        <section class="menu-picker">
+          <div class="service-bar">
+            <div class="segmented"><button data-service="內用" class="active">內用</button><button data-service="外帶">外帶</button><button data-service="EAT送">EAT送</button></div>
+            <label id="tableField">桌號 <input id="tableNo" value="A1" maxlength="6" /></label>
+            <span>點選品項即可加入右側訂單</span>
+          </div>
+          <div class="category-tabs" id="categoryTabs"></div>
+          <div class="pos-items" id="posItems"></div>
+        </section>
+        <aside class="cart-panel">
+          <div class="cart-head"><div><small id="cartService">內用・桌號 A1</small><h3>目前點餐</h3></div><button id="clearCart">清空</button></div>
+          <div class="cart-items" id="cartItems"></div>
+          <div class="spice-box"><b>天然辛香料（可複選）</b><div id="spiceOptions"></div></div>
+          <label class="order-note">訂單備註<textarea id="posNote" placeholder="例如：少辣、不要餐具"></textarea></label>
+          <div class="cart-total"><span>合計</span><strong id="cartTotal">$0</strong></div>
+          <button class="checkout-btn" id="checkoutBtn" disabled>送出訂單</button>
+        </aside>
+      </main>
+    </div>
+    <div class="pos-view" id="manageView">
+      <div class="manage-toolbar">
+        <div><small>今日營運</small><h2>訂單管理</h2></div>
+        <div class="manage-summary"><span>待接單 <b id="manageWaiting">0</b></span><span>製作中 <b id="manageCooking">0</b></span><span>待出餐 <b id="manageReady">0</b></span><span>完成 <b id="manageDone">0</b></span><span>營業額 <b id="manageRevenue">$0</b></span></div>
+      </div>
+      <div class="manage-filters"><button data-filter="all" class="active">全部</button><button data-filter="waiting">待接單</button><button data-filter="cooking">製作中</button><button data-filter="ready">待出餐</button><button data-filter="done">已完成</button></div>
+      <div class="manage-orders" id="manageOrders"></div>
+    </div>
+  </section>
+
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal-box"><button class="modal-close" id="modalClose">×</button><div id="modalContent"></div></div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="game.js"></script>
+</body>
+</html>
+
